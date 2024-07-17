@@ -1,38 +1,21 @@
 import "./assets/BootswatchTheme.css";
+import HelmetNav from './components/HelmetNav';
 import HomeInfo from './components/HomeInfo';
-import {Helmet} from "react-helmet";
-import favicon from './assets/dumbbell-solid.svg'
+import Calendar from './components/Calendar';
+import Stats from './components/Stats';
+import { BrowserRouter,  Routes,  Route} from "react-router-dom";
 
 function App() {
   return (
-    <div className='App'>
-
-        <Helmet>
-            <meta charSet="utf-8" />
-            <title>LiftingLog</title>
-            <link rel="icon" type="image/x-icon" href={favicon} />
-        </Helmet>
-
-        <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-          <div className="container-fluid">
-            <a className="navbar-brand" href="#">LiftingLog (Home)</a>
-            <div className="collapse navbar-collapse" id="navbarColor01">
-              <ul className="navbar-nav me-auto">
-                <li className="nav-item">
-                  <a className="nav-link active" href="#">Calendar</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link active" href="#">Stats</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-        <br/><br/>
-        <HomeInfo />
-
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HelmetNav />}>
+          <Route index element={<HomeInfo />} />
+          <Route path="calendar" element={<Calendar />} />
+          <Route path="stats" element={<Stats />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
