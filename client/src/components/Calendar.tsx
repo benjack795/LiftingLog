@@ -31,44 +31,54 @@ const Calendar = () => {
 
     return (
         <>
-            <br/><br/>
+            <br/>
             <div className='d-flex justify-content-center'>
                 <div className='d-inline-flex p-2 bg-secondary rounded-4 w-25 justify-content-between'>
-                    <button type="button" className="btn btn-primary" onClick={decrementPageDate}>
+                    <button className="btn btn-primary" onClick={decrementPageDate}>
                         <img src={leftarrow}/>
                     </button>
-                    <h2>{monthnames[pageDate.getMonth()] + " " + pageDate.getFullYear()}</h2>
-                    <button type="button" className="btn btn-primary" onClick={incrementPageDate}>
+                    <h3>{monthnames[pageDate.getMonth()] + " " + pageDate.getFullYear()}</h3>
+                    <button className="btn btn-primary" onClick={incrementPageDate}>
                         <img src={rightarrow}/>
                     </button>
                 </div>
             </div>
-            <br/><br/>
+            <br/>
             <div className='d-flex justify-content-center'>
-                <div className='bg-secondary w-75 rounded-4'>
+                <div className='bg-secondary rounded-4 p-1'>
                     <div className='d-flex flex-row'>
                         {dayarray.slice(0,7).map((num:number) => (
-                            <DayBlock daynum={num}/>
+                                <div className='p-1'>
+                                    <DayBlock daynum={num}/>
+                                </div>
                         ))}
                     </div>
                     <div className='d-flex flex-row'>
                         {dayarray.slice(7,14).map((num:number) => (
-                            <DayBlock daynum={num}/>
+                                <div className='p-1'>
+                                    <DayBlock daynum={num}/>
+                                </div>
                         ))}
                     </div>
                     <div className='d-flex flex-row'>
                         {dayarray.slice(14,21).map((num:number) => (
-                            <DayBlock daynum={num}/>
+                                <div className='p-1'>
+                                    <DayBlock daynum={num}/>
+                                </div>
                         ))}
                     </div>
                     <div className='d-flex flex-row'>
                         {dayarray.slice(21,28).map((num:number) => (
-                            <DayBlock daynum={num}/>
+                                <div className='p-1'>
+                                    <DayBlock daynum={num}/>
+                                </div>
                         ))}
                     </div>
                     <div className='d-flex flex-row'>
                         {dayarray.slice(28,dayarray.length).map((num:number) => (
-                            <DayBlock daynum={num}/>
+                                <div className='p-1'>
+                                    <DayBlock daynum={num}/>
+                                </div>
                         ))}
                     </div>
                 </div>
