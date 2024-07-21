@@ -6,16 +6,24 @@ import DayBlock from './DayBlock';
 
 const monthnames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const monthdays = [31,28,31,30,31,30,31,31,30,31,30,31];
-
+const daynames = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
 
 const Calendar = () => {
 
-    const [pageDate,setPageDate] = useState<Date>(new Date)
+    const curdat = new Date();
+    const firstdat = new Date(curdat.getFullYear(), curdat.getMonth(), 1);
+    const [pageDate,setPageDate] = useState<Date>(firstdat);
+
 
     var dayarray = Array();
     var daynum = monthdays[pageDate.getMonth()];
     if(pageDate.getMonth() === 1 && pageDate.getFullYear() % 4 === 0){
         daynum = 29;
+    }
+
+    var finalday = (pageDate.getDay() < 1 ? 7 : pageDate.getDay());
+    for(var i = 1; i < finalday; i++){
+        dayarray.push("F");
     }
     for(var i = 1; i <= daynum; i++){
         dayarray.push(i);
@@ -47,42 +55,57 @@ const Calendar = () => {
             <div className='d-flex justify-content-center'>
                 <div className='bg-secondary rounded-4 p-1'>
                     <div className='d-flex flex-row'>
-                        {dayarray.slice(0,7).map((num:number) => (
+                        {daynames.map((day:string) => (
+                                <div className='p-1 w-100 text-center rounded-4'>
+                                    <h5>{day}</h5>
+                                </div>
+                        ))}
+                    </div>                    
+                    <div className='d-flex flex-row'>
+                        {dayarray.slice(0,7).map((val:any) => (
                                 <div className='p-1'>
-                                    <DayBlock daynum={num}/>
+                                    <DayBlock daynum={val}/>
                                 </div>
                         ))}
                     </div>
                     <div className='d-flex flex-row'>
-                        {dayarray.slice(7,14).map((num:number) => (
+                        {dayarray.slice(7,14).map((val:any) => (
                                 <div className='p-1'>
-                                    <DayBlock daynum={num}/>
+                                    <DayBlock daynum={val}/>
                                 </div>
                         ))}
                     </div>
                     <div className='d-flex flex-row'>
-                        {dayarray.slice(14,21).map((num:number) => (
+                        {dayarray.slice(14,21).map((val:any) => (
                                 <div className='p-1'>
-                                    <DayBlock daynum={num}/>
+                                    <DayBlock daynum={val}/>
                                 </div>
                         ))}
                     </div>
                     <div className='d-flex flex-row'>
-                        {dayarray.slice(21,28).map((num:number) => (
+                        {dayarray.slice(21,28).map((val:any) => (
                                 <div className='p-1'>
-                                    <DayBlock daynum={num}/>
+                                    <DayBlock daynum={val}/>
                                 </div>
                         ))}
                     </div>
                     <div className='d-flex flex-row'>
-                        {dayarray.slice(28,dayarray.length).map((num:number) => (
+                        {dayarray.slice(28,35).map((val:any) => (
                                 <div className='p-1'>
-                                    <DayBlock daynum={num}/>
+                                    <DayBlock daynum={val}/>
+                                </div>
+                        ))}
+                    </div>
+                    <div className='d-flex flex-row'>
+                        {dayarray.slice(35,42).map((val:any) => (
+                                <div className='p-1'>
+                                    <DayBlock daynum={val}/>
                                 </div>
                         ))}
                     </div>
                 </div>
             </div>
+            <br/>
         </>
     )
 }

@@ -1,6 +1,5 @@
 import { Button, Form, Modal } from 'react-bootstrap';
 import '../assets/BootswatchTheme.css';
-import placehold from '../assets/geometric-placehold.png';
 
 const PhotoForm = ({isOpen, onClose} : any) => {
     if (!isOpen) return null;

@@ -27,7 +27,7 @@ const ExerciseForm = ({isOpen, onClose} : any) => {
                         <div className="row">
                             <Form.Group className="mb-3">
                                 <Form.Label>Exercise Type</Form.Label>
-                                <Form.Select aria-label="Default select example">
+                                <Form.Select aria-label="Default select">
                                     <option value="1">Squat</option>
                                     <option value="2">Bench</option>
                                     <option value="3">Deadlift</option>
