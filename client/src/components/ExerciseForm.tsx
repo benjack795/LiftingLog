@@ -1,17 +1,6 @@
 import { Button, Form, Modal } from 'react-bootstrap';
 import '../assets/BootswatchTheme.css';
 
-enum ExType {
-    squat, bench, deadlift
-}
-
-interface Exercise {
-    extype : ExType,
-    weight : number,
-    sets: number,
-    reps: number,
-    date: Date
-}
 
 const ExerciseForm = ({isOpen, onClose} : any) => {
     if (!isOpen) return null;

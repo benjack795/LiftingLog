@@ -1,8 +1,7 @@
 import '../assets/BootswatchTheme.css';
 import plus from '../assets/plus-lg.svg';
 import camera from '../assets/camera.svg';
-import eye from '../assets/eye.svg'
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ExerciseForm from './ExerciseForm';
 import PhotoForm from './PhotoForm';
 import ExerciseView from './ExerciseView';
@@ -10,12 +9,18 @@ import PhotoView from './PhotoView';
 
 const DayBlock = ({daynum} : {daynum: any}) => {
 
-    const butsize = '50px';
-    const butheight = '25px'
     const [exAddOpen, setExAddOpen] = React.useState(false);
     const [phoAddOpen, setPhoAddOpen] = React.useState(false);
     const [exViewOpen, setExViewOpen] = React.useState(false);
     const [phoViewOpen, setPhoViewOpen] = React.useState(false);
+
+    const [message, setMessage] = useState('');
+  
+    useEffect(() => {
+      fetch('http://localhost:5000/lifts')
+        .then((response) => response.text())
+        .then((data) => {setMessage(data)});
+    }, []);
 
     const openExAdd = () => {
         setExAddOpen(true);
@@ -58,6 +63,7 @@ const DayBlock = ({daynum} : {daynum: any}) => {
 
     return (
         <>
+
             <div className='d-inline-flex p-1 bg-primary rounded-4 justify-content-center' style={{width: "130px", height: "180px"}}>
                 <div className='Container'>    
                                 
@@ -78,6 +84,10 @@ const DayBlock = ({daynum} : {daynum: any}) => {
                         </div>        
                     </div>
 
+                    <div className='row'>
+                        <label>{message}</label>
+                    </div>
+                    
                     {/* <div className="row">
                         <div className='container'>
                             <div className='row'>

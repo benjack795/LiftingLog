@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../assets/BootswatchTheme.css';
 import leftarrow from '../assets/caret-left-fill.svg';
 import rightarrow from '../assets/caret-right-fill.svg';
@@ -13,7 +13,6 @@ const Calendar = () => {
     const curdat = new Date();
     const firstdat = new Date(curdat.getFullYear(), curdat.getMonth(), 1);
     const [pageDate,setPageDate] = useState<Date>(firstdat);
-
 
     var dayarray = Array();
     var daynum = monthdays[pageDate.getMonth()];
