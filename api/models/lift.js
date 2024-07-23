@@ -17,7 +17,7 @@ const liftSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    curdate: {
+    date: {
         type: Date,
         required: true,
         default: Date.now()

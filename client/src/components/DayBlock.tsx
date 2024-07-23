@@ -14,13 +14,27 @@ const DayBlock = ({daynum} : {daynum: any}) => {
     const [exViewOpen, setExViewOpen] = React.useState(false);
     const [phoViewOpen, setPhoViewOpen] = React.useState(false);
 
-    const [message, setMessage] = useState('');
+    const [lifts, setLifts] = useState('');
   
     useEffect(() => {
       fetch('http://localhost:5000/lifts')
         .then((response) => response.text())
-        .then((data) => {setMessage(data)});
+        .then((data) => {setLifts(data)});
     }, []);
+
+    const grabFirstLift = () : String =>{
+       if(lifts != '' && lifts != null){
+            const testystring = JSON.parse(lifts)[0].extype
+            console.log(testystring)
+            if(testystring != undefined){
+                return testystring
+            } else{
+                return 'no data'
+            }
+       } else {
+            return 'no lifts'
+       }
+    }
 
     const openExAdd = () => {
         setExAddOpen(true);
@@ -72,7 +86,7 @@ const DayBlock = ({daynum} : {daynum: any}) => {
                             <h5>{daynum}</h5>
                         </div>
                         <div className='col p-1' >
-                            <button className="btn btn-light p-0" style={{width: "30px", height:"30px"}} onClick={openExAdd}>
+                            <button className="btn btn-light p-0" style={{width: "30px", height:"30px"}} onClick={grabFirstLift}>
                                 <img className='w-75' src={plus}/>
                             </button>
                         </div>
@@ -85,7 +99,7 @@ const DayBlock = ({daynum} : {daynum: any}) => {
                     </div>
 
                     <div className='row'>
-                        <label>{message}</label>
+                        <label>{grabFirstLift()}</label>
                     </div>
                     
                     {/* <div className="row">
