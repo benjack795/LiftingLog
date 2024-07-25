@@ -15,6 +15,9 @@ app.use(express.json());
 const liftsRouter = require('./routes/lifts')
 app.use('/lifts', liftsRouter)
 
+const photosRouter = require('./routes/photos')
+app.use('/photos', photosRouter)
+
 const port = 5000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

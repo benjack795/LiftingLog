@@ -6,35 +6,15 @@ import ExerciseForm from './ExerciseForm';
 import PhotoForm from './PhotoForm';
 import ExerciseView from './ExerciseView';
 import PhotoView from './PhotoView';
+import ExButton from './ExButton';
+import PhotoButton from './PhotoButton';
 
-const DayBlock = ({daynum} : {daynum: any}) => {
+const DayBlock = ({daynum, content, photos} : {daynum: any, content : any, photos : any}) => {
 
     const [exAddOpen, setExAddOpen] = React.useState(false);
     const [phoAddOpen, setPhoAddOpen] = React.useState(false);
     const [exViewOpen, setExViewOpen] = React.useState(false);
     const [phoViewOpen, setPhoViewOpen] = React.useState(false);
-
-    const [lifts, setLifts] = useState('');
-  
-    useEffect(() => {
-      fetch('http://localhost:5000/lifts')
-        .then((response) => response.text())
-        .then((data) => {setLifts(data)});
-    }, []);
-
-    const grabFirstLift = () : String =>{
-       if(lifts != '' && lifts != null){
-            const testystring = JSON.parse(lifts)[0].extype
-            console.log(testystring)
-            if(testystring != undefined){
-                return testystring
-            } else{
-                return 'no data'
-            }
-       } else {
-            return 'no lifts'
-       }
-    }
 
     const openExAdd = () => {
         setExAddOpen(true);
@@ -86,7 +66,7 @@ const DayBlock = ({daynum} : {daynum: any}) => {
                             <h5>{daynum}</h5>
                         </div>
                         <div className='col p-1' >
-                            <button className="btn btn-light p-0" style={{width: "30px", height:"30px"}} onClick={grabFirstLift}>
+                            <button className="btn btn-light p-0" style={{width: "30px", height:"30px"}} onClick={openExAdd}>
                                 <img className='w-75' src={plus}/>
                             </button>
                         </div>
@@ -99,33 +79,24 @@ const DayBlock = ({daynum} : {daynum: any}) => {
                     </div>
 
                     <div className='row'>
-                        <label>{grabFirstLift()}</label>
-                    </div>
-                    
-                    {/* <div className="row">
                         <div className='container'>
-                            <div className='row'>
-                                    <button className='btn rounded-3 bg-success text-black btn-sm' onClick={openExView}>
-                                        <label>Squat</label>
-                                    </button>
-                            </div>
-                            <div className='row'>
-                                    <button className='btn rounded-3 bg-info text-black btn-sm' onClick={openExView}>
-                                        <label>Bench</label>
-                                    </button>
-                            </div>  
-                            <div className='row'> 
-                                    <button className='btn rounded-3 bg-danger text-black btn-sm' onClick={openExView}>
-                                        <label>Deadlift</label>
-                                    </button>
-                            </div>
-                            <div className='row'>
-                                    <button className='btn rounded-3 bg-warning text-black btn-sm' onClick={openPhoView}>
-                                        <label>Photo</label>
-                                    </button>
-                            </div>    
+                            {content.map((lift:any) => {
+                                    return (
+                                        <ExButton exercise={lift} />
+                                    )
+                            })}
                         </div>
-                    </div> */}
+                    </div>
+
+                    <div className='row'>
+                        <div className='container'>
+                            {photos.map((photo:any) => {
+                                    return (
+                                        <PhotoButton/>
+                                    )
+                            })}
+                        </div>
+                    </div>
 
                 </div>
             </div>

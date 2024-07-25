@@ -13,6 +13,41 @@ const Calendar = () => {
     const curdat = new Date();
     const firstdat = new Date(curdat.getFullYear(), curdat.getMonth(), 1);
     const [pageDate,setPageDate] = useState<Date>(firstdat);
+    const [lifts, setLifts] = useState('');
+    const [photos, setPhotos] = useState('');
+  
+    useEffect(() => {
+      fetch('http://localhost:5000/lifts/specific', { 
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "POST", 
+            body: JSON.stringify({ pagedate : new Date()})
+        })
+        .then((response) => response.text())
+        .then((data) => {setLifts(data)});
+
+      fetch('http://localhost:5000/photos/specific', { 
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: "POST", 
+            body: JSON.stringify({ pagedate : new Date()})
+        })
+        .then((response) => response.text())
+        .then((data) => {setPhotos(data)});
+
+    }, []);
+
+    var liftdatearray = Array();  
+    if(lifts != ''){
+        liftdatearray = JSON.parse(lifts);
+    };
+
+    var photodatearray = Array();  
+    if(photos != ''){
+        photodatearray = JSON.parse(photos);
+    };
 
     var dayarray = Array();
     var daynum = monthdays[pageDate.getMonth()];
@@ -61,46 +96,142 @@ const Calendar = () => {
                         ))}
                     </div>                    
                     <div className='d-flex flex-row'>
-                        {dayarray.slice(0,7).map((val:any) => (
+                        {dayarray.slice(0,7).map((val: any) => {
+                            var contents = Array()
+                            liftdatearray.forEach((lift : any) => {
+                                var compdate = new Date(lift.date)
+                                if(compdate.getDay() == val){
+                                    contents.push(lift)
+                                }
+                            })
+                            var photocontents = Array()
+                            photodatearray.forEach((photo : any) => {
+                                var photocompdate = new Date(photo.date)
+                                if(photocompdate.getDay() == val){
+                                    photocontents.push(photo)
+                                }
+                            })
+                            return (
                                 <div className='p-1'>
-                                    <DayBlock daynum={val}/>
+                                    <DayBlock daynum={val} content={contents} photos={photocontents}/>
                                 </div>
-                        ))}
+                            )
+                        })}
                     </div>
                     <div className='d-flex flex-row'>
-                        {dayarray.slice(7,14).map((val:any) => (
+                        {dayarray.slice(7,14).map((val:any) => {
+                            var contents = Array()
+                            liftdatearray.forEach((lift : any) => {
+                                var compdate = new Date(lift.date)
+                                if(compdate.getDay() == val){
+                                    contents.push(lift)
+                                }
+                            })
+                            var photocontents = Array()
+                            photodatearray.forEach((photo : any) => {
+                                var photocompdate = new Date(photo.date)
+                                if(photocompdate.getDay() == val){
+                                    photocontents.push(photo)
+                                }
+                            })
+                            return (
                                 <div className='p-1'>
-                                    <DayBlock daynum={val}/>
+                                    <DayBlock daynum={val} content={contents} photos={photocontents}/>
                                 </div>
-                        ))}
+                            )
+                        })}
                     </div>
                     <div className='d-flex flex-row'>
-                        {dayarray.slice(14,21).map((val:any) => (
+                        {dayarray.slice(14,21).map((val:any) => {
+                            var contents = Array()
+                            liftdatearray.forEach((lift : any) => {
+                                var compdate = new Date(lift.date)
+                                if(compdate.getDay() == val){
+                                    contents.push(lift)
+                                }
+                            })
+                            var photocontents = Array()
+                            photodatearray.forEach((photo : any) => {
+                                var photocompdate = new Date(photo.date)
+                                if(photocompdate.getDay() == val){
+                                    photocontents.push(photo)
+                                }
+                            })
+                            return (
                                 <div className='p-1'>
-                                    <DayBlock daynum={val}/>
+                                    <DayBlock daynum={val} content={contents} photos={photocontents}/>
                                 </div>
-                        ))}
+                            )
+                        })}
                     </div>
                     <div className='d-flex flex-row'>
-                        {dayarray.slice(21,28).map((val:any) => (
+                        {dayarray.slice(21,28).map((val:any) => {
+                            var contents = Array()
+                            liftdatearray.forEach((lift : any) => {
+                                var compdate = new Date(lift.date)
+                                if(compdate.getDay() == val){
+                                    contents.push(lift)
+                                }
+                            })
+                            var photocontents = Array()
+                            photodatearray.forEach((photo : any) => {
+                                var photocompdate = new Date(photo.date)
+                                if(photocompdate.getDay() == val){
+                                    photocontents.push(photo)
+                                }
+                            })
+                            return (
                                 <div className='p-1'>
-                                    <DayBlock daynum={val}/>
+                                    <DayBlock daynum={val} content={contents} photos={photocontents}/>
                                 </div>
-                        ))}
+                            )
+                        })}
                     </div>
                     <div className='d-flex flex-row'>
-                        {dayarray.slice(28,35).map((val:any) => (
+                        {dayarray.slice(28,35).map((val:any) => {
+                            var contents = Array()
+                            liftdatearray.forEach((lift : any) => {
+                                var compdate = new Date(lift.date)
+                                if(compdate.getDay() == val){
+                                    contents.push(lift)
+                                }
+                            })
+                            var photocontents = Array()
+                            photodatearray.forEach((photo : any) => {
+                                var photocompdate = new Date(photo.date)
+                                if(photocompdate.getDay() == val){
+                                    photocontents.push(photo)
+                                }
+                            })
+                            return (
                                 <div className='p-1'>
-                                    <DayBlock daynum={val}/>
+                                    <DayBlock daynum={val} content={contents} photos={photocontents}/>
                                 </div>
-                        ))}
+                            )
+                        })}
                     </div>
                     <div className='d-flex flex-row'>
-                        {dayarray.slice(35,42).map((val:any) => (
+                        {dayarray.slice(35,42).map((val:any) => {
+                            var contents = Array()
+                            liftdatearray.forEach((lift : any) => {
+                                var compdate = new Date(lift.date)
+                                if(compdate.getDay() == val){
+                                    contents.push(lift)
+                                }
+                            })
+                            var photocontents = Array()
+                            photodatearray.forEach((photo : any) => {
+                                var photocompdate = new Date(photo.date)
+                                if(photocompdate.getDay() == val){
+                                    photocontents.push(photo)
+                                }
+                            })
+                            return (
                                 <div className='p-1'>
-                                    <DayBlock daynum={val}/>
+                                    <DayBlock daynum={val} content={contents} photos={photocontents}/>
                                 </div>
-                        ))}
+                            )
+                        })}
                     </div>
                 </div>
             </div>
