@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import '../assets/BootswatchTheme.css';
 import favicon from '../assets/dumbbell-solid.svg';
 import { Outlet, Link } from 'react-router-dom';

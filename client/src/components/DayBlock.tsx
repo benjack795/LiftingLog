@@ -1,20 +1,17 @@
 import '../assets/BootswatchTheme.css';
 import plus from '../assets/plus-lg.svg';
 import camera from '../assets/camera.svg';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ExerciseForm from './ExerciseForm';
 import PhotoForm from './PhotoForm';
-import ExerciseView from './ExerciseView';
-import PhotoView from './PhotoView';
 import ExButton from './ExButton';
 import PhotoButton from './PhotoButton';
 
-const DayBlock = ({daynum, content, photos} : {daynum: any, content : any, photos : any}) => {
+
+const DayBlock = ({daynum, dateraw, content, photos, fetchData} : {daynum: number, dateraw : Date, content : any, photos : any, fetchData : () => void}) => {
 
     const [exAddOpen, setExAddOpen] = React.useState(false);
     const [phoAddOpen, setPhoAddOpen] = React.useState(false);
-    const [exViewOpen, setExViewOpen] = React.useState(false);
-    const [phoViewOpen, setPhoViewOpen] = React.useState(false);
 
     const openExAdd = () => {
         setExAddOpen(true);
@@ -32,33 +29,16 @@ const DayBlock = ({daynum, content, photos} : {daynum: any, content : any, photo
         setPhoAddOpen(false);
     }
 
-    const openExView = () => {
-        setExViewOpen(true);
-    }
-    
-    const closeExView = () => {
-        setExViewOpen(false);
-    }
-
-    const openPhoView = () => {
-        setPhoViewOpen(true);
-    }
-    
-    const closePhoView = () => {
-        setPhoViewOpen(false);
-    }
-
-    if(daynum === 'F'){
+    if(daynum < 0){
         return (
-            <div className='d-inline-flex p-1 rounded-4 justify-content-center' style={{width: "130px", height: "180px"}}><br/></div>
+            <div className='d-inline-flex p-1 rounded-4 justify-content-center' style={{width: "120px"}}><br/></div>
         )
     }
-
 
     return (
         <>
 
-            <div className='d-inline-flex p-1 bg-primary rounded-4 justify-content-center' style={{width: "130px", height: "180px"}}>
+            <div className='d-inline-flex p-1 bg-primary rounded-4 justify-content-center' style={{width: "120px"}}>
                 <div className='Container'>    
                                 
                     <div className="row">
@@ -82,7 +62,7 @@ const DayBlock = ({daynum, content, photos} : {daynum: any, content : any, photo
                         <div className='container'>
                             {content.map((lift:any) => {
                                     return (
-                                        <ExButton exercise={lift} />
+                                        <ExButton key={lift._id} exercise={lift} fetchData={fetchData} />
                                     )
                             })}
                         </div>
@@ -92,7 +72,7 @@ const DayBlock = ({daynum, content, photos} : {daynum: any, content : any, photo
                         <div className='container'>
                             {photos.map((photo:any) => {
                                     return (
-                                        <PhotoButton/>
+                                        <PhotoButton key={photo._id} />
                                     )
                             })}
                         </div>
@@ -100,10 +80,8 @@ const DayBlock = ({daynum, content, photos} : {daynum: any, content : any, photo
 
                 </div>
             </div>
-            <ExerciseForm isOpen={exAddOpen} onClose={closeExAdd} />
+            <ExerciseForm isOpen={exAddOpen} onClose={closeExAdd} dateGiven={dateraw} fetchData={fetchData} />
             <PhotoForm isOpen={phoAddOpen} onClose={closePhoAdd} />
-            <ExerciseView isOpen={exViewOpen} onClose={closeExView}/>
-            <PhotoView isOpen={phoViewOpen} onClose={closePhoView}/>
         </>
     )
 }

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const liftSchema = new mongoose.Schema({
     extype: {
-        type: String,
+        type: Number, //1=squat, 2=bench, 3=deadlift
         required: true
     },
     weight: {

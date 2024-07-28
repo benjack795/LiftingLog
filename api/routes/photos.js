@@ -23,11 +23,10 @@ module.exports = router
       if (indate.getFullYear() % 4 == 0){
         lastday = 29;
       }
-      var enddate = new Date(indate.getFullYear(), indate.getMonth(), lastday+3,1,0,0)
+      var enddate = new Date(indate.getFullYear(), indate.getMonth(), lastday+3, 1,0,0)
       const photos = await Photo.find({"date": {"$gte": startdate, "$lt": enddate}})
       res.json(photos)
     } catch (err) {
-      console.log(err)
       res.status(500).json({ message: err.message})
     }
   });

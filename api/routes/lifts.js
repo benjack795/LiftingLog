@@ -65,7 +65,6 @@ const monthdays = [31,28,31,30,31,30,31,31,30,31,30,31];
 
  //update x
   router.patch('/:id', getLift, async (req, res) => {
-    console.log(req.body)
     if(req.body.extype != null){
         res.lift.extype = req.body.extype
     }
