@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import '../assets/BootswatchTheme.css';
-import favicon from '../assets/dumbbell-solid.svg';
+import favicon from '../assets/arm-8500.svg';
 import { Outlet, Link } from 'react-router-dom';
 
 const HelmetNav = () => {

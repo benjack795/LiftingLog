@@ -5,10 +5,6 @@ const photoSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    weight: {
-        type: Number,
-        required: true
-    },
     date: {
         type: Date,
         required: true,

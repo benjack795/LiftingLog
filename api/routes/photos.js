@@ -35,7 +35,6 @@ module.exports = router
   router.post('/', async (req, res) => {
     const photo = new Photo({
       photofile: req.body.photofile,
-      weight: req.body.weight,
       date: req.body.date
     })
   
@@ -43,6 +42,7 @@ module.exports = router
       const newPhoto = await photo.save();
       res.status(201).json(newPhoto);
     } catch (err) {
+      console.log(req.body)
       res.status(400).json({ message: err.message });
     }
   });
@@ -63,23 +63,7 @@ module.exports = router
         next()
     }
     
- //update x
-  router.patch('/:id', getPhoto, async (req, res) => {
-    if(req.body.photofile != null){
-        res.photo.photofile = req.body.photofile
-    }
-    if(req.body.weight != null){
-        res.photo.weight = req.body.weight
-    }
-    try {
-        const updatedPhoto = await res.photo.save()
-        res.json(updatedPhoto)
-    } catch (err){
-        res.status(400).json({ message: err.message })
-    }
-  })
-  
-   //delete x
+ //delete x
  router.delete('/:id', getPhoto, async (req, res) =>{
     try {
         await res.photo.deleteOne()

@@ -1,4 +1,4 @@
-import { Button, Form, Modal } from 'react-bootstrap';
+import { Button, Form, Modal, Row } from 'react-bootstrap';
 import '../assets/BootswatchTheme.css';
 import { useState } from 'react';
 
@@ -150,9 +150,9 @@ const ExerciseView = ({isOpen, onClose, content, fetchData} : {isOpen : boolean,
                     {switchHeaders(buttonState)}
                 </Modal.Header>
                 <Modal.Body>
-                    <div className='Container'>
-                        <div className="row">
-                            <Form.Group className="mb-3">
+                <Form noValidate>
+                        <Row className="mb-2">
+                            <Form.Group>
                                 <Form.Label>Exercise Type</Form.Label>
                                 <Form.Select aria-label="Default select" disabled={readOnlyForm} name="extype" value={formData.extype} onChange={handleChange}>
                                     <option value="1">Squat</option>
@@ -160,28 +160,28 @@ const ExerciseView = ({isOpen, onClose, content, fetchData} : {isOpen : boolean,
                                     <option value="3">Deadlift</option>
                                 </Form.Select>
                             </Form.Group>
-                        </div>
-                        <div className="row">
-                            <Form.Group className="mb-3">
+                        </Row>
+                        <Row className="mb-2">
+                            <Form.Group>
                                 <Form.Label>Weight Lifted (KG)</Form.Label>
                                 <Form.Control placeholder="Enter weight" readOnly={readOnlyForm} name="weight" value={formData.weight} onChange={handleChange} type="number" min="0" required/>
                             </Form.Group>
-                        </div>
-                        <div className="row">
-                            <Form.Group className="mb-3">
+                        </Row>
+                        <Row className="mb-2">
+                            <Form.Group>
                                 <Form.Label>Sets</Form.Label>
                                 <Form.Control placeholder="Enter sets" readOnly={readOnlyForm} name="sets" value={formData.sets} onChange={handleChange} type="number" min="0" required/>
                             </Form.Group>
-                        </div>
-                        <div className="row">
-                            <Form.Group className="mb-3">
+                        </Row>
+                        <Row className="mb-2">
+                            <Form.Group>
                                 <Form.Label>Reps</Form.Label>
                                 <Form.Control placeholder="Enter reps" readOnly={readOnlyForm} name="reps" value={formData.reps} onChange={handleChange} type="number" min="0" required/>
                             </Form.Group>
-                        </div>
-                    </div>
+                        </Row>
+                    </Form>
                 </Modal.Body>
-                <p>{JSON.stringify(formData)}</p>
+                {/* <p>{JSON.stringify(formData)}</p> */}
                 {switchButtons(buttonState)}
 
             </Modal>

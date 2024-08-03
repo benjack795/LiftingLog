@@ -13,7 +13,7 @@ const HomeInfo = () => {
               <img className='w-50' src={musclearm}/>
             </div>
             <br/>
-            <p className='text-center'>Record your lifts and view your records! <br/> Click Calendar to get started, then click Stats when you're done. <br/> Coded by Ben Jackson in July 2024.</p>
+            <p className='text-center'>Record your lifts, add progress photos, and view your records! <br/> Click Calendar to get started, then click Stats when you're done. <br/> Coded by Ben Jackson in July 2024.</p>
           </div>
         </div>
       </>

@@ -21,8 +21,6 @@ const Calendar = () => {
     }, []);
 
     const fetchData = () => {
-        console.log('refetching')
-
         fetch('http://localhost:5000/lifts/specific', { 
             headers: {
                 "Content-Type": "application/json",

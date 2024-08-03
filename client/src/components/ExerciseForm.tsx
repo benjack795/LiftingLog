@@ -97,8 +97,8 @@ const ExerciseForm = ({isOpen, onClose, dateGiven, fetchData} : {isOpen : boolea
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                <p>{dateGiven.toDateString()}</p>
-                <p>{JSON.stringify(formData)}</p>
+                {/* <p>{dateGiven.toDateString()}</p> */}
+                {/* <p>{JSON.stringify(formData)}</p> */}
                     <Button variant="primary" type="submit" onClick={handleSubmit}>
                         Save
                     </Button>

@@ -1,5 +1,5 @@
 import '../assets/BootswatchTheme.css';
-import plus from '../assets/plus-lg.svg';
+import plus from '../assets/muscle-icon.svg';
 import camera from '../assets/camera.svg';
 import React from 'react';
 import ExerciseForm from './ExerciseForm';
@@ -72,7 +72,7 @@ const DayBlock = ({daynum, dateraw, content, photos, fetchData} : {daynum: numbe
                         <div className='container'>
                             {photos.map((photo:any) => {
                                     return (
-                                        <PhotoButton key={photo._id} />
+                                        <PhotoButton key={photo._id} photo={photo} dateGiven={dateraw} fetchData={fetchData} />
                                     )
                             })}
                         </div>
@@ -81,7 +81,7 @@ const DayBlock = ({daynum, dateraw, content, photos, fetchData} : {daynum: numbe
                 </div>
             </div>
             <ExerciseForm isOpen={exAddOpen} onClose={closeExAdd} dateGiven={dateraw} fetchData={fetchData} />
-            <PhotoForm isOpen={phoAddOpen} onClose={closePhoAdd} />
+            <PhotoForm isOpen={phoAddOpen} onClose={closePhoAdd} dateGiven={dateraw} fetchData={fetchData}/>
         </>
     )
 }

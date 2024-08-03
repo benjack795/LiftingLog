@@ -1,6 +1,5 @@
 import '../assets/BootswatchTheme.css';
 import StatBlock from './StatBlock';
-import WeightBlock from './WeightBlock';
 
 const Stats = () => {
     return (
@@ -13,13 +12,8 @@ const Stats = () => {
                     <div className='col'>
                         <StatBlock/>
                     </div>
-                </div>
-                <div className='row'>
                     <div className='col'>
                         <StatBlock/>
-                    </div>
-                    <div className='col'>
-                        <WeightBlock/>
                     </div>
                 </div>
             </div>

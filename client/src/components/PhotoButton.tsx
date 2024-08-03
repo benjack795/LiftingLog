@@ -2,7 +2,7 @@ import React from 'react';
 import '../assets/BootswatchTheme.css';
 import PhotoView from './PhotoView';
 
-const PhotoButton = () => {
+const PhotoButton = ({photo, dateGiven, fetchData} : any) => {
 
         const [phoViewOpen, setPhoViewOpen] = React.useState(false);
         
@@ -21,7 +21,7 @@ const PhotoButton = () => {
                                 <label>Photo</label>
                                 </button>
                         </div>
-                        <PhotoView isOpen={phoViewOpen} onClose={closePhoView}/>                
+                        <PhotoView isOpen={phoViewOpen} onClose={closePhoView} content={photo} dateGiven={dateGiven} fetchData={fetchData}/>                
                 </>
 
         )
