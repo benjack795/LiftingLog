@@ -1,81 +1,86 @@
-import { useState } from 'react';
 import '../assets/BootswatchTheme.css';
-import { Bar, Line } from 'react-chartjs-2';
-import { Chart, registerables } from 'chart.js';
+import { Line } from 'react-chartjs-2';
+import { Chart, registerables} from 'chart.js';
 Chart.register(...registerables);
 
-export const Data = [
-  {
-    id: 1,
-    year: 2016,
-    userGain: 80000,
-    userLost: 823
-  },
-  {
-    id: 2,
-    year: 2017,
-    userGain: 45677,
-    userLost: 345
-  },
-  {
-    id: 3,
-    year: 2018,
-    userGain: 78888,
-    userLost: 555
-  },
-  {
-    id: 4,
-    year: 2019,
-    userGain: 90000,
-    userLost: 4555
-  },
-  {
-    id: 5,
-    year: 2020,
-    userGain: 4300,
-    userLost: 234
+const monthnames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const StatBlock = ({dotcolor, extype, curdate, inlifts} : {dotcolor : string, extype: number, curdate: Date, inlifts: any}) => {
+
+  const filteredLifts = Array()
+  inlifts.forEach((element : any) => {
+      if(element.extype == extype){
+        filteredLifts.push({x: new Date(element.date).getDate(), y: element.weight})
+      }
+  });
+
+  const getExType = (typenum: number) => {
+    switch(typenum){
+      case 1:
+        return 'Squat'
+      case 2:
+        return 'Benchpress'
+      case 3:
+        return 'Deadlift'
+    }
   }
-];
 
-const StatBlock = () => {
-
-  const [chartData, setChartData] = useState({
-    labels: Data.map((data) => data.year), 
+  const data = {
+    labels: filteredLifts.map((data) => data.x), 
     datasets: [
       {
-        label: "Weight Lifted (KG)",
-        data: Data.map((data) => data.userGain),
+        data: filteredLifts.map((data) => data.y),
         backgroundColor: [
-          "rgba(75,192,192,1)",
-          "#ecf0f1",
-          "#50AF95",
-          "#f3ba2f",
-          "#2a71d0"
+          dotcolor
         ],
         borderColor: "white",
-        borderWidth: 0.2
+        borderWidth: 1,
+        pointRadius: 6
+      },
+    ],
+  }
+
+  const options = {
+    responsive: true,
+    scales: {
+      x: {
+        beginAtZero: false,
+        title: {
+          display: true,
+          text: "Day",
+          color: "gray"
+        },
+        ticks: {
+          color: "gray"
+        }
+      },
+      y: {
+        beginAtZero: false,
+      },
+    },
+    plugins: {
+      tooltip:{
+        enabled: false
+      },
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: getExType(extype) + " Progress for " + monthnames[curdate.getMonth()] + " " + curdate.getFullYear() + " (KG)",
+        font: {
+          size: 15,
+        },
+        color: "white"
       }
-    ]
-  });
+    },
+    
+  }
 
     return (
        <>
         <br/>
           <div className='bg-secondary p-2 rounded-4 chart-container'>
-              <Line
-                data={chartData}
-                options={{
-                  plugins: {
-                    title: {
-                      display: true,
-                      text: "EXERCISE progress for YEAR"
-                    },
-                    legend: {
-                      display: false
-                    }
-                  }
-                }}
-              />
+            <Line data={data} options={options} />
           </div>
       </>
     )

@@ -3,6 +3,8 @@ import '../assets/BootswatchTheme.css';
 import leftarrow from '../assets/caret-left-fill.svg';
 import rightarrow from '../assets/caret-right-fill.svg';
 import DayBlock from './DayBlock';
+import StatBlock from './StatBlock';
+import { Col, Container, Row } from 'react-bootstrap';
 
 const monthnames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const monthdays = [31,28,31,30,31,30,31,31,30,31,30,31];
@@ -130,7 +132,21 @@ const Calendar = () => {
                     })}
                 </div>
             </div>
-            <br/>
+            <Container>
+                    <Row>
+                    <Col>
+                        <StatBlock dotcolor='rgba(0, 255, 169, 1)' extype={1} curdate={pageDate} inlifts={lifts} />
+                    </Col>
+                    <Col>
+                        <StatBlock dotcolor='rgba(0, 194, 255, 1)' extype={2} curdate={pageDate} inlifts={lifts}/>
+                    </Col>
+                    <Col>
+                        <StatBlock dotcolor='rgba(255, 0, 0, 1)' extype={3} curdate={pageDate} inlifts={lifts}/>
+                    </Col>
+                    </Row>
+            </Container>
+
+
         </>
     )
 }

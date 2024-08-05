@@ -23,9 +23,6 @@ const HelmetNav = () => {
                     <li className="nav-item">
                         <Link className="nav-link active" to="/calendar">Calendar</Link>
                     </li>
-                    <li className="nav-item">
-                        <Link className="nav-link active" to="/stats">Stats</Link>
-                    </li>
                     </ul>
                 </div>
                 </div>
