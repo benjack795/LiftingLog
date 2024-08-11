@@ -73,15 +73,21 @@ const ExerciseView = ({isOpen, onClose, content, fetchData} : {isOpen : boolean,
             })
         }).then(() => {
             closeForm();
+            setFormData({
+                extype: formData.extype,
+                weight: formData.weight,
+                sets: formData.sets,
+                reps: formData.reps
+            })
         });
     }
 
     const closeForm = () =>{
-        onClose();
         resetFormData();
+        fetchData();
+        onClose();
         setReadOnlyForm(true)
         setButtonState(1);
-        fetchData();
     }
 
     const switchHeaders = (statenum: number) =>{

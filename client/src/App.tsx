@@ -11,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HelmetNav />}>
           <Route index element={<HomeInfo />} />
+          <Route path="index" element={<HomeInfo />} />
           <Route path="calendar" element={<Calendar />} />
         </Route>
       </Routes>
