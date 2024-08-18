@@ -17,7 +17,7 @@ const PhotoButton = ({photo, dateGiven, fetchData} : any) => {
     return (
                 <>
                         <div className='row'>
-                                <button className='btn rounded-3 bg-warning text-black btn-sm' onClick={openPhoView}>
+                                <button name="Photo" className='btn rounded-3 bg-warning text-black btn-sm' onClick={openPhoView}>
                                 <label>Photo</label>
                                 </button>
                         </div>

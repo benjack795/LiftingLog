@@ -34,7 +34,7 @@ const ExButton = ({exercise, fetchData} : any) => {
       return (
         <>
              <div className='row'>
-                     <button className={stylestring} onClick={openExView}>
+                     <button name={labelstring} className={stylestring} onClick={openExView}>
                          <label>{labelstring}</label>
                      </button>
              </div>

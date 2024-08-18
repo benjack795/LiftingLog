@@ -5,15 +5,11 @@ import { useState } from 'react';
 const PhotoForm = ({isOpen, onClose, content, dateGiven, fetchData} : {isOpen : boolean, onClose : ()=>void, content : any,  dateGiven: Date, fetchData: () => void }) => {
 
     const [buttonState, setButtonState] = useState(1);
-    const [formFile, setFormFile] = useState<File>();
 
     const getFileName = () => {
         return (dateGiven.getDate() + '-' + (dateGiven.getMonth()+1) + '-' + dateGiven.getFullYear() + '-' + content.photofile)
     }
 
-    const resetFormFile = () => {
-        setFormFile(undefined)
-    }
 
     const goToOriginalState = () => {
         setButtonState(1)
@@ -49,7 +45,6 @@ const PhotoForm = ({isOpen, onClose, content, dateGiven, fetchData} : {isOpen : 
 
     const closeForm = () =>{
         onClose();
-        resetFormFile();
         setButtonState(1);
         fetchData();
     }
@@ -106,7 +101,7 @@ const PhotoForm = ({isOpen, onClose, content, dateGiven, fetchData} : {isOpen : 
                             <Form.Group>
                                 <Form.Label>Photo Preview</Form.Label>
                                 <div className="bg-primary text-center rounded-3">
-                                    <img className="w-100 p-2"src={getFileName()}/>
+                                    <img alt="viewimg" className="w-100 p-2"src={getFileName()}/>
                                 </div>
                             </Form.Group>
                         </Row>

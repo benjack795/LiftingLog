@@ -4,15 +4,29 @@ import { Chart, registerables} from 'chart.js';
 Chart.register(...registerables);
 
 const monthnames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-const StatBlock = ({dotcolor, extype, curdate, inlifts} : {dotcolor : string, extype: number, curdate: Date, inlifts: any}) => {
+
+export const liftFilter = (lifts : any, exercise : number) => {
+
+  var dotcolor = "";
+  switch(exercise){
+    case 1:
+      dotcolor = "rgba(0, 255, 169, 1)";
+      break;
+    case 2:
+      dotcolor = "rgba(0, 194, 255, 1)";
+      break;
+    case 3:
+      dotcolor = "rgba(255, 0, 0, 1)";
+      break;
+  } 
 
   var filteredLifts = Array()
-  inlifts.forEach((element : any) => {
-      if(element.extype == extype){
-        filteredLifts.push({x: new Date(element.date).getDate(), y: element.weight})
-      }
+  lifts.forEach((element : any) => {
+        if(element.extype == exercise){
+          filteredLifts.push({x: new Date(element.date).getDate(), y: element.weight})
+        }
   });
-
+    
   for (let i = 0; i < filteredLifts.length; i++) {
     var smallestOne = i
     for (let j = (i + 1); j < filteredLifts.length; j++) {
@@ -40,17 +54,6 @@ const StatBlock = ({dotcolor, extype, curdate, inlifts} : {dotcolor : string, ex
     }
   }
 
-  const getExType = (typenum: number) => {
-    switch(typenum){
-      case 1:
-        return 'Squat'
-      case 2:
-        return 'Benchpress'
-      case 3:
-        return 'Deadlift'
-    }
-  }
-
   const data = {
     labels: finalLifts.map((data) => data.x), 
     datasets: [
@@ -64,6 +67,22 @@ const StatBlock = ({dotcolor, extype, curdate, inlifts} : {dotcolor : string, ex
         pointRadius: 6
       },
     ],
+  }
+
+  return data;
+}
+
+export const StatBlock = ({extype, curdate, inlifts} : {extype: number, curdate: Date, inlifts: any}) => {
+
+  const getExType = (typenum: number) => {
+    switch(typenum){
+      case 1:
+        return 'Squat'
+      case 2:
+        return 'Benchpress'
+      case 3:
+        return 'Deadlift'
+    }
   }
 
   const options = {
@@ -107,10 +126,8 @@ const StatBlock = ({dotcolor, extype, curdate, inlifts} : {dotcolor : string, ex
        <>
         <br/>
           <div className='bg-secondary p-2 rounded-4 chart-container'>
-            <Line data={data} options={options} />
+            <Line data={liftFilter(inlifts, extype)} options={options} />
           </div>
       </>
     )
 }
-
-export default StatBlock;
