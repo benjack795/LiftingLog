@@ -112,10 +112,10 @@ const ExerciseView = ({isOpen, onClose, content, fetchData} : {isOpen : boolean,
             case 1:
                 return (
                     <Modal.Footer>
-                        <Button variant="warning" onClick={goToEditState}>
+                        <Button role="editbut" variant="warning" onClick={goToEditState}>
                             Edit
                         </Button>
-                        <Button variant="danger" onClick={goToDeleteState}>
+                        <Button role="delbut" variant="danger" onClick={goToDeleteState}>
                             Delete
                         </Button>
                     </Modal.Footer>
@@ -127,7 +127,7 @@ const ExerciseView = ({isOpen, onClose, content, fetchData} : {isOpen : boolean,
                         <Button variant="info" onClick={goToOriginalState}>
                             Cancel
                         </Button>
-                        <Button variant="danger" onClick={handleDelete}>
+                        <Button role="surebut" variant="danger" onClick={handleDelete}>
                             Yes
                         </Button>
                     </Modal.Footer>
@@ -135,7 +135,7 @@ const ExerciseView = ({isOpen, onClose, content, fetchData} : {isOpen : boolean,
             case 3:
                 return (
                     <Modal.Footer>
-                        <Button variant="warning" onClick={handleUpdate}>
+                        <Button role="savbut" variant="warning" onClick={handleUpdate}>
                             Save
                         </Button>
                         <Button variant="info" onClick={goToOriginalState}>

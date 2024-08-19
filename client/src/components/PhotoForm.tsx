@@ -126,7 +126,7 @@ const PhotoForm = ({isOpen, onClose, dateGiven, fetchData} : {isOpen : boolean, 
                 </Modal.Body>
                 <Modal.Footer>
                     {/* <p>{JSON.stringify(formData)}</p> */}
-                    <Button variant="primary" type="submit" onClick={handleSubmit}>
+                    <Button role="savbut" variant="primary" type="submit" onClick={handleSubmit}>
                         Save
                     </Button>
                 </Modal.Footer>

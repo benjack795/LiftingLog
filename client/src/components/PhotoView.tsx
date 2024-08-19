@@ -67,7 +67,7 @@ const PhotoForm = ({isOpen, onClose, content, dateGiven, fetchData} : {isOpen : 
             case 1:
                 return (
                     <Modal.Footer>
-                        <Button variant="danger" onClick={goToDeleteState}>
+                        <Button role="delbut" variant="danger" onClick={goToDeleteState}>
                             Delete
                         </Button>
                     </Modal.Footer>
@@ -79,7 +79,7 @@ const PhotoForm = ({isOpen, onClose, content, dateGiven, fetchData} : {isOpen : 
                         <Button variant="info" onClick={goToOriginalState}>
                             Cancel
                         </Button>
-                        <Button variant="danger" onClick={handleDelete}>
+                        <Button role="surebut" variant="danger" onClick={handleDelete}>
                             Yes
                         </Button>
                     </Modal.Footer>
@@ -101,7 +101,7 @@ const PhotoForm = ({isOpen, onClose, content, dateGiven, fetchData} : {isOpen : 
                             <Form.Group>
                                 <Form.Label>Photo Preview</Form.Label>
                                 <div className="bg-primary text-center rounded-3">
-                                    <img alt="viewimg" className="w-100 p-2"src={getFileName()}/>
+                                    <img role="formimg" alt="viewimg" className="w-100 p-2"src={getFileName()}/>
                                 </div>
                             </Form.Group>
                         </Row>

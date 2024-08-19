@@ -46,12 +46,12 @@ const DayBlock = ({daynum, dateraw, content, photos, fetchData} : {daynum: numbe
                             <h5>{daynum}</h5>
                         </div>
                         <div className='col p-1' >
-                            <button className="btn btn-light p-0" style={{width: "30px", height:"30px"}} onClick={openExAdd}>
+                            <button role="addbut" className="btn btn-light p-0" style={{width: "30px", height:"30px"}} onClick={openExAdd}>
                                 <img className='w-75' src={plus}/>
                             </button>
                         </div>
                         <div className='col p-1'>
-                            <button className="btn btn-light p-0" style={{width: "30px", height:"30px"}} onClick={openPhoAdd} >
+                            <button role="phobut" className="btn btn-light p-0" style={{width: "30px", height:"30px"}} onClick={openPhoAdd} >
                                 <img className='w-75' src={camera}/>
                             </button>
 
