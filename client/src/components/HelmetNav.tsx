@@ -3,7 +3,10 @@ import '../assets/BootswatchTheme.css';
 import favicon from '../assets/arm-8500.svg';
 import { Outlet, Link } from 'react-router-dom';
 
+
 const HelmetNav = () => {
+
+    //return navbar containing a text logo, set the title and title icon, and add the two page links to the navbar
     return (
         <>
             <Helmet>

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//Photo Schema: Filename and Date (the actual photos are stored in the public folder in the client) (mongo)
 const photoSchema = new mongoose.Schema({
     photofile: {
         type: String,
@@ -11,6 +12,6 @@ const photoSchema = new mongoose.Schema({
         default: Date.now()
     }
 
-})
+});
 
-module.exports = mongoose.model('Photo', photoSchema)
+module.exports = mongoose.model('Photo', photoSchema);

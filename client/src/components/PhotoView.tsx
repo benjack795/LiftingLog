@@ -1,27 +1,31 @@
 import { Button, Form, Modal, Row } from 'react-bootstrap';
 import '../assets/BootswatchTheme.css';
 import { useState } from 'react';
+import { Photo } from './Types';
 
-const PhotoForm = ({isOpen, onClose, content, dateGiven, fetchData} : {isOpen : boolean, onClose : ()=>void, content : any,  dateGiven: Date, fetchData: () => void }) => {
+//a modal form object, displayed when a photo button is clicked, allowing a photo to be deleted
+const PhotoForm = ({isOpen, onClose, content, dateGiven, fetchData} : {isOpen : boolean, onClose : ()=>void, content : Photo,  dateGiven: Date, fetchData: () => void }) => {
 
+    //button state 1-close/delete 2-sure/not sure
     const [buttonState, setButtonState] = useState(1);
 
+    //produce a dated file name to delete file as it was stored initially
     const getFileName = () => {
-        return (dateGiven.getDate() + '-' + (dateGiven.getMonth()+1) + '-' + dateGiven.getFullYear() + '-' + content.photofile)
-    }
+        return (dateGiven.getDate() + '-' + (dateGiven.getMonth()+1) + '-' + dateGiven.getFullYear() + '-' + content.photofile);
+    };
 
-
+    //button state change functions
     const goToOriginalState = () => {
-        setButtonState(1)
-    }
+        setButtonState(1);
+    };
 
     const goToDeleteState = () => {
-        setButtonState(2)
-    }
+        setButtonState(2);
+    };
 
+    //deletion handling
     const handleDelete = () => {
-        //delete photo
-        console.log('http://localhost:5000/upload/' + getFileName())
+        //delete photo from local storage
         fetch('http://localhost:5000/upload/' + getFileName(), { 
             headers: {
                 "Content-Type": "application/json",
@@ -31,7 +35,7 @@ const PhotoForm = ({isOpen, onClose, content, dateGiven, fetchData} : {isOpen : 
             closeForm();
         });     
         
-        //delete db
+        //delete photo data from backend
         fetch('http://localhost:5000/photos/' + content._id, { 
             headers: {
                 "Content-Type": "application/json",
@@ -43,12 +47,14 @@ const PhotoForm = ({isOpen, onClose, content, dateGiven, fetchData} : {isOpen : 
         
     }
 
+    //reset form on close
     const closeForm = () =>{
         onClose();
         setButtonState(1);
         fetchData();
-    }
+    };
 
+    //change title based on button state
     const switchHeaders = (statenum: number) =>{
         switch(statenum){
             case 1:
@@ -59,9 +65,10 @@ const PhotoForm = ({isOpen, onClose, content, dateGiven, fetchData} : {isOpen : 
                 return(
                     <Modal.Title>Delete Progress Photo</Modal.Title>
                 )
-        }
-    }
+        };
+    };
 
+    //return buttons depending on button state
     const switchButtons = () => {
         switch(buttonState){
             case 1:
@@ -84,11 +91,16 @@ const PhotoForm = ({isOpen, onClose, content, dateGiven, fetchData} : {isOpen : 
                         </Button>
                     </Modal.Footer>
                 )
-        }
-    }
+        };
+    };
 
+    //return nothing if the form isnt open/visible
     if (!isOpen) return null;
 
+    //return the form, which has:
+    //title
+    //photo displayed in box
+    //buttons depending on state
     return (
        <>
             <Modal show={isOpen} onHide={closeForm}>

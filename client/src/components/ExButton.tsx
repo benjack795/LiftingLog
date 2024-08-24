@@ -1,21 +1,23 @@
 import React from 'react';
 import '../assets/BootswatchTheme.css';
 import ExerciseView from './ExerciseView';
+import {Lift} from './Types';
 
-const ExButton = ({exercise, fetchData} : any) => {
+//button object added to a dayblock for each exercise on a given day, clickable to edit
+const ExButton = ({exercise, fetchData} : {exercise : Lift, fetchData : () => void}) => {
     
+    //view form visibility state and setters
     const [exViewOpen, setExViewOpen] = React.useState(false);
-
     const openExView = () => {
         setExViewOpen(true);
-    }
-    
+    }  
     const closeExView = () => {
         setExViewOpen(false);
     }
 
-    var stylestring = '';
-    var labelstring = '';
+    //define color and style based on exercise
+    let stylestring = '';
+    let labelstring = '';
     switch(exercise.extype) {
         case 1:
             stylestring='btn rounded-3 bg-success text-black btn-sm';
@@ -31,6 +33,7 @@ const ExButton = ({exercise, fetchData} : any) => {
             break;
       }
 
+      //return a clickable button and an invisible modal form to edit the exercise with
       return (
         <>
              <div className='row'>

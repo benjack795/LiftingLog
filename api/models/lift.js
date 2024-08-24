@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//Lift Schema: exercise type, weight, number of sets, number of reps, date (mongo)
 const liftSchema = new mongoose.Schema({
     extype: {
         type: Number, //1=squat, 2=bench, 3=deadlift
@@ -23,6 +24,6 @@ const liftSchema = new mongoose.Schema({
         default: Date.now()
     }
 
-})
+});
 
-module.exports = mongoose.model('Lift', liftSchema)
+module.exports = mongoose.model('Lift', liftSchema);

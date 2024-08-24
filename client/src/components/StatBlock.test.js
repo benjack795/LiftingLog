@@ -1,8 +1,8 @@
-import { liftFilter } from "./StatBlock.tsx"
+import { liftFilter } from "./StatBlock.tsx";
 
 test('the statblock produces the appropriate graph data from input', async () => {
 
-    //render a dayblock with example data, containing multiple types, same days, and out of order
+    //input example data to the statblock method, containing multiple types, same days, and out of order
     const inputarray = [
         {
             "_id": "66a6adc4984018911980ae26",
@@ -67,8 +67,9 @@ test('the statblock produces the appropriate graph data from input', async () =>
             "date": "2024-08-16T11:12:12.000Z",
             "__v": 0
         }
-    ]
+    ];
 
+    //data is parsed correctly for statblocks, ordering the values by day, filtering to the highest value for each day and ignoring the wrong types
     const outputarray = {
         "labels": [
             1,
@@ -90,8 +91,8 @@ test('the statblock produces the appropriate graph data from input', async () =>
                 "pointRadius": 6
             }
         ]
-    } 
+    };
 
-   expect(liftFilter(inputarray, 1)).toEqual(outputarray)
+   expect(liftFilter(inputarray, 1)).toEqual(outputarray);
 
 })

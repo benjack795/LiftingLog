@@ -1,20 +1,23 @@
 import { Button, Form, Modal, Row } from 'react-bootstrap';
 import '../assets/BootswatchTheme.css';
 import { useState } from 'react';
+import { Lift } from './Types';
 
-const ExerciseView = ({isOpen, onClose, content, fetchData} : {isOpen : boolean, onClose : ()=>void, content: any, fetchData: () => void }) => {
+//a modal form object, which allows users to edit and delete exercise objects when clicked
+const ExerciseView = ({isOpen, onClose, content, fetchData} : {isOpen : boolean, onClose : ()=>void, content: Lift, fetchData: () => void }) => {
 
+    //button states - 1 edit/delete, 2 not sure/sure, 3 back/save edit
     const [buttonState, setButtonState] = useState(1);
+    //states 1 and 2 are read only
     const [readOnlyForm, setReadOnlyForm] = useState(true);
-
+    //form data state, form data change handlers
     const[formData, setFormData] = useState({
         extype: content.extype,
         weight: content.weight,
         sets: content.sets,
         reps: content.reps
     });
-
-    const handleChange = (e : any) => {
+    const handleChange = (e : React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData({
                 ...formData,
@@ -22,30 +25,31 @@ const ExerciseView = ({isOpen, onClose, content, fetchData} : {isOpen : boolean,
         });
     };
 
+    //state transition methods
     const goToOriginalState = () => {
-        setReadOnlyForm(true)
-        setButtonState(1)
-    }
-
+        setReadOnlyForm(true);
+        setButtonState(1);
+    };
     const goToDeleteState = () => {
-        setReadOnlyForm(true)
-        setButtonState(2)
-    }
-
+        setReadOnlyForm(true);
+        setButtonState(2);
+    };
     const goToEditState = () => {
-        setReadOnlyForm(false)
-        setButtonState(3)
-    }
+        setReadOnlyForm(false);
+        setButtonState(3);
+    };
 
+    //form reset
     const resetFormData = () => {
         setFormData({
             extype: content.extype,
             weight: content.weight,
             sets: content.sets,
             reps: content.reps
-        })
-    }
+        });
+    };
 
+    //on delete, send a request to delete the form data from the backend
     const handleDelete = () => {
         //delete request
         fetch('http://localhost:5000/lifts/' + content._id, { 
@@ -56,8 +60,9 @@ const ExerciseView = ({isOpen, onClose, content, fetchData} : {isOpen : boolean,
         }).then(() => {
             closeForm();
         });
-    }
+    };
 
+    //on edit, send request to update the form data in the backend
     const handleUpdate = () => {
         //update request
         fetch('http://localhost:5000/lifts/' + content._id, { 
@@ -78,18 +83,20 @@ const ExerciseView = ({isOpen, onClose, content, fetchData} : {isOpen : boolean,
                 weight: formData.weight,
                 sets: formData.sets,
                 reps: formData.reps
-            })
+            });
         });
-    }
+    };
 
+    //reset data on form close
     const closeForm = () =>{
         resetFormData();
         fetchData();
         onClose();
         setReadOnlyForm(true)
         setButtonState(1);
-    }
+    };
 
+    //change the title depending on the button state
     const switchHeaders = (statenum: number) =>{
         switch(statenum){
             case 1:
@@ -105,8 +112,9 @@ const ExerciseView = ({isOpen, onClose, content, fetchData} : {isOpen : boolean,
                     <Modal.Title>Edit Exercise</Modal.Title>
                 )
         }
-    }
+    };
 
+    //return the buttons depending on the button state
     const switchButtons = (statenum : number) => {
         switch(statenum){
             case 1:
@@ -144,11 +152,15 @@ const ExerciseView = ({isOpen, onClose, content, fetchData} : {isOpen : boolean,
                     </Modal.Footer>
                 )
         }
-    }
+    };
 
-
+    //return nothing if the form isnt open/visible
     if (!isOpen) return null;
 
+    //return the form, which contains:
+    //title depending on the state
+    //exercise fields, matching the add
+    //buttons depending on the state
     return (
        <>
             <Modal show={isOpen} onHide={closeForm}>
@@ -187,7 +199,6 @@ const ExerciseView = ({isOpen, onClose, content, fetchData} : {isOpen : boolean,
                         </Row>
                     </Form>
                 </Modal.Body>
-                {/* <p>{JSON.stringify(formData)}</p> */}
                 {switchButtons(buttonState)}
 
             </Modal>

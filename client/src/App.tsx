@@ -6,6 +6,7 @@ import { BrowserRouter,  Routes,  Route} from "react-router-dom";
 
 function App() {
 
+  //highest level app conmponent uses react router to route to each of the two pages via the navbar (and the default index)
   return (
     <BrowserRouter>
       <Routes>
@@ -19,4 +20,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

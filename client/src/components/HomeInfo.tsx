@@ -1,6 +1,7 @@
 import '../assets/BootswatchTheme.css';
 import musclearm from '../assets/muscle-arm.png';
 
+//return a div with a muscle image and some welcoming text
 const HomeInfo = () => {
     return (
        <>
@@ -13,7 +14,7 @@ const HomeInfo = () => {
               <img className='w-50' src={musclearm}/>
             </div>
             <br/>
-            <p className='text-center'>Record your lifts, add progress photos, and view your records! <br/> Click Calendar to get started! <br/> Coded by Ben Jackson in July 2024.</p>
+            <p className='text-center'>Record your lifts, add progress photos, and view your stats! <br/> Click Calendar to get started! <br/> Coded by Ben Jackson in July 2024.</p>
           </div>
         </div>
       </>

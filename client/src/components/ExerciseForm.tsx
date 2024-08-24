@@ -2,9 +2,10 @@ import { Button, Form, Modal, Row } from 'react-bootstrap';
 import '../assets/BootswatchTheme.css';
 import { useState } from 'react';
 
-
+//modal form that allows an exercise object to be created and sent to the backend
 const ExerciseForm = ({isOpen, onClose, dateGiven, fetchData} : {isOpen : boolean, onClose : ()=>void, dateGiven: Date, fetchData : () => void}) => {
 
+    //form data state, reset and change handling methods
     const[formData, setFormData] = useState({
         extype: 1,
         weight: 0,
@@ -12,7 +13,7 @@ const ExerciseForm = ({isOpen, onClose, dateGiven, fetchData} : {isOpen : boolea
         reps: 0
     });
 
-    const handleChange = (e : any) => {
+    const handleChange = (e : React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement> ) => {
         const { name, value } = e.target;
         setFormData({
                 ...formData,
@@ -27,9 +28,10 @@ const ExerciseForm = ({isOpen, onClose, dateGiven, fetchData} : {isOpen : boolea
             sets: 0,
             reps: 0
         })
-    }
+    };
 
-    const handleSubmit = (e : any) => {
+    //when the submit/save button is clicked, send the form data and an add request
+    const handleSubmit = (e : React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
         fetch('http://localhost:5000/lifts/', { 
@@ -50,14 +52,23 @@ const ExerciseForm = ({isOpen, onClose, dateGiven, fetchData} : {isOpen : boolea
 
     };
 
+    //reset the form on close
     const closeForm = () =>{
         onClose();
         resetFormData();
         fetchData();
-    }
+    };
 
+    //dont return anything if not visible
     if (!isOpen) return null;
 
+    //if visible return a closable modal form, with
+    //a title
+    //a dropdown selection for the three types of exercise
+    //a weight field
+    //a sets field
+    //a reps field
+    //save button for submitting
     return (
        <>
             <Modal show={isOpen} onHide={closeForm}>
@@ -97,8 +108,6 @@ const ExerciseForm = ({isOpen, onClose, dateGiven, fetchData} : {isOpen : boolea
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                {/* <p>{dateGiven.toDateString()}</p> */}
-                {/* <p>{JSON.stringify(formData)}</p> */}
                     <Button role="savbut" variant="primary" type="submit" onClick={handleSubmit}>
                         Save
                     </Button>
