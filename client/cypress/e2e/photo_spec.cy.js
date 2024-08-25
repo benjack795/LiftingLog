@@ -8,7 +8,7 @@ describe('photo', () => {
 
       //click add photo on the 20th
       cy.findByRole('20').within(() => {
-        cy.findByRole('phobut').click();
+        cy.get('[alt=camera]').parent().click();
       })
 
       //enter a file with the wrong type and check the warning appears
@@ -31,7 +31,7 @@ describe('photo', () => {
         cy.contains('Photo').click();
       })
 
-      cy.findByRole('formimg').should('have.attr', 'src').should('include', '20-8-2024-mingles.jpg');
+      cy.get('[alt="viewimg"]').should('have.attr', 'src').should('include', '20-8-2024-mingles.jpg');
   
       //click delete, click YES
       cy.findByRole('delbut').click();

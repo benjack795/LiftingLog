@@ -6,7 +6,7 @@ describe('exercise', () => {
 
     //click add on the 20th
     cy.findByRole('20').within(() => {
-      cy.findByRole('addbut').click();
+      cy.get('[alt=plus]').parent().click();
     })
 
     //enter a 100kg bench for one set of 2 and click save

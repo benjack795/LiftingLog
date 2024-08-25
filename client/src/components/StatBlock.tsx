@@ -1,8 +1,9 @@
 import '../assets/BootswatchTheme.css';
 import { Line } from 'react-chartjs-2';
 import { Chart, registerables} from 'chart.js';
-Chart.register(...registerables);
 import { Lift, StatData } from './Types';
+Chart.register(...registerables);
+
 
 //array of month names, used for graph titles
 const monthnames = ["January","February","March","April","May","June","July","August","September","October","November","December"];

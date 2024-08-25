@@ -21,8 +21,38 @@ const Calendar = () => {
 
     //fetching lift and photo data from the api to populate the calendar and graphs
     useEffect(() => {
-        fetchData();
-    }, []);
+        //internal version of fetch data function to be used only when needed
+        const fetchDataEffect = (dateused : Date) => {
+            fetch('http://localhost:5000/lifts/specific', { 
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: "POST", 
+                body: JSON.stringify({ pagedate : dateused})
+            })
+            .then((response) => response.text())
+            .then((data) => {
+                if(data !== ''){
+                    setLifts(JSON.parse(data)) 
+                }
+            });
+    
+            fetch('http://localhost:5000/photos/specific', { 
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: "POST", 
+                body: JSON.stringify({ pagedate : dateused})
+            })
+            .then((response) => response.text())
+            .then((data) => {
+                if(data !== ''){
+                    setPhotos(JSON.parse(data)) 
+                }
+            });
+        };
+        fetchDataEffect(pageDate);
+    }, [pageDate]); 
 
     const fetchData = () => {
         fetch('http://localhost:5000/lifts/specific', { 
@@ -72,11 +102,11 @@ const Calendar = () => {
             <div className='d-flex justify-content-center'>
                 <div className='d-inline-flex p-2 bg-secondary rounded-4 w-25 justify-content-between'>
                     <button className="btn btn-primary" onClick={decrementPageDate}>
-                        <img src={leftarrow}/>
+                        <img src={leftarrow} alt="left arrow"/>
                     </button>
                     <h3>{monthnames[pageDate.getMonth()] + " " + pageDate.getFullYear()}</h3>
                     <button className="btn btn-primary" onClick={incrementPageDate}>
-                        <img src={rightarrow}/>
+                        <img src={rightarrow} alt="right arrow"/>
                     </button>
                 </div>
             </div>

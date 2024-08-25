@@ -17,7 +17,7 @@ const HelmetNav = () => {
 
             <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
                 <div className="container-fluid">
-                <a className="navbar-brand">[LiftingLog]</a>
+                    <a className="navbar-brand" href="/">[LiftingLog]</a>
                 <div className="collapse navbar-collapse" id="navbarColor01">
                     <ul className="navbar-nav me-auto">
                     <li className="nav-item">

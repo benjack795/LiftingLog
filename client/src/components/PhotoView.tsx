@@ -113,7 +113,7 @@ const PhotoForm = ({isOpen, onClose, content, dateGiven, fetchData} : {isOpen : 
                             <Form.Group>
                                 <Form.Label>Photo Preview</Form.Label>
                                 <div className="bg-primary text-center rounded-3">
-                                    <img role="formimg" alt="viewimg" className="w-100 p-2"src={getFileName()}/>
+                                    <img alt="viewimg" className="w-100 p-2"src={getFileName()}/>
                                 </div>
                             </Form.Group>
                         </Row>

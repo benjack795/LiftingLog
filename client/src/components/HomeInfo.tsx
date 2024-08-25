@@ -11,7 +11,7 @@ const HomeInfo = () => {
             <h2 className='text-center'>Welcome to LiftingLog.</h2>
             <br/>
             <div className='text-center'>
-              <img className='w-50' src={musclearm}/>
+              <img className='w-50' src={musclearm} alt="muscle arm"/>
             </div>
             <br/>
             <p className='text-center'>Record your lifts, add progress photos, and view your stats! <br/> Click Calendar to get started! <br/> Coded by Ben Jackson in July 2024.</p>
