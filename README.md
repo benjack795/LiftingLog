@@ -5,7 +5,6 @@ An example fullstack webapp that allows you to record compound exercises and pho
 Uses React for frontend with Typescript, and Express and MongoDB for the backend.
 
 ## Installation
-Ideally you want to use VSCode, via its inbuilt terminal, to enter commands.
 Clone the repo + install packages in the frontend (client) and backend (api) folders:
 ```sh
 $ git clone https://github.com/benjack795/LiftingLog.git
