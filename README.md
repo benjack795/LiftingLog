@@ -9,16 +9,18 @@ Ideally you want to use VSCode, via its inbuilt terminal, to enter commands.
 Clone the repo + install packages in the frontend (client) and backend (api) folders:
 ```sh
 $ git clone https://github.com/benjack795/LiftingLog.git
+$ cd LiftingLog
 $ cd client
-$ npm install
+$ npm install --force
 $ cd ../api
-$ npm install
+$ npm install --force
 ```
 
 ## Commands
+(Make sure you run each of these commands in a separate terminal) 
 In the api folder, run `npm run devStart` to launch the backend server.
-In the client folder, run `npm run dev` to start the site. It should then open in a new tab on http://localhost:3000/.
-If you want to run the jest unit tests, run `npm run test` in the client folder. 
+In the client folder, run `npm start` to start the site. It should then open in a new tab.
+If you want to run the jest unit tests, run `npm test a` in the client folder. 
 If you want to run the cypress end to end tests, run `npx cypress open` to open the cypress environment.
 
 ## Tutorial
