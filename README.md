@@ -26,6 +26,6 @@ If you want to run the cypress end to end tests, run `npx cypress open` to open 
 ## Tutorial
 From the home page, you can click Calendar to go to the main functional portion of the site.
 From there, you can add either add exercises with the plus buttons or photos with the camera buttons for each day.
-Exercises added will be updated onto the relevand graphs at the base of the page.
+Exercises added will be updated onto the relevant graphs at the base of the page.
 
 ![example site pic](example-liftinglog.png)
