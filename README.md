@@ -5,6 +5,11 @@ An example fullstack webapp that allows you to record compound exercises and pho
 Uses React for frontend with Typescript, and Express and MongoDB for the backend.
 
 ## Installation
+You will need to install Node.js, MongoDB, and if you are on Windows, I reccomend gitBash as your terminal.
+* [Node](https://nodejs.org/en/download/prebuilt-installer)
+* [MongoDB](https://www.mongodb.com/try/download/community-kubernetes-operator)
+* [GitBash](https://git-scm.com/downloads)
+
 Clone the repo + install packages in the frontend (client) and backend (api) folders:
 ```sh
 $ git clone https://github.com/benjack795/LiftingLog.git
